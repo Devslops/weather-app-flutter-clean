@@ -7,9 +7,12 @@ class AuthApi extends Disposable {
 
   AuthApi({
     @required String baseUrl,
+    @required String token,
   }) {
     client.options.baseUrl = baseUrl;
+    client.options.queryParameters = {'key': token, 'lang': 'fr'};
   }
+
   @override
   void dispose() {
     client.close(force: true);
