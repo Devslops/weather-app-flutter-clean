@@ -2,13 +2,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weather_app/data/dtos/meteo_condition_detail_dto.dart';
 
 part 'meteo_condition_dto.freezed.dart';
+part 'meteo_condition_dto.g.dart';
 
 @freezed
 abstract class MeteoConditionDto with _$MeteoConditionDto {
   factory MeteoConditionDto({
     @JsonKey(name: 'temp_c') double tempC,
     @JsonKey(name: 'wind_kph') double windKph,
-    @JsonKey(name: 'wind_dir') double windDir,
+    @JsonKey(name: 'wind_dir') String windDir,
     @JsonKey(name: 'precip_mm') double precipMm,
     @JsonKey(name: 'humidity') double humidity,
     @JsonKey(name: 'cloud') double cloudPerc,
@@ -16,4 +17,6 @@ abstract class MeteoConditionDto with _$MeteoConditionDto {
     @JsonKey(name: 'uv') double uvIndex,
     @JsonKey(name: 'condition') MeteoConditionDetailDto detail,
   }) = _MeteoConditionDto;
+  factory MeteoConditionDto.fromJson(Map<String, dynamic> json) =>
+      _$MeteoConditionDtoFromJson(json);
 }

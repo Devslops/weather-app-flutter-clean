@@ -8,6 +8,9 @@ part of 'meteo_condition_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+MeteoConditionDto _$MeteoConditionDtoFromJson(Map<String, dynamic> json) {
+  return _MeteoConditionDto.fromJson(json);
+}
 
 class _$MeteoConditionDtoTearOff {
   const _$MeteoConditionDtoTearOff();
@@ -16,7 +19,7 @@ class _$MeteoConditionDtoTearOff {
   _MeteoConditionDto call(
       {@JsonKey(name: 'temp_c') double tempC,
       @JsonKey(name: 'wind_kph') double windKph,
-      @JsonKey(name: 'wind_dir') double windDir,
+      @JsonKey(name: 'wind_dir') String windDir,
       @JsonKey(name: 'precip_mm') double precipMm,
       @JsonKey(name: 'humidity') double humidity,
       @JsonKey(name: 'cloud') double cloudPerc,
@@ -46,7 +49,7 @@ mixin _$MeteoConditionDto {
   @JsonKey(name: 'wind_kph')
   double get windKph;
   @JsonKey(name: 'wind_dir')
-  double get windDir;
+  String get windDir;
   @JsonKey(name: 'precip_mm')
   double get precipMm;
   @JsonKey(name: 'humidity')
@@ -60,6 +63,7 @@ mixin _$MeteoConditionDto {
   @JsonKey(name: 'condition')
   MeteoConditionDetailDto get detail;
 
+  Map<String, dynamic> toJson();
   $MeteoConditionDtoCopyWith<MeteoConditionDto> get copyWith;
 }
 
@@ -70,7 +74,7 @@ abstract class $MeteoConditionDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'temp_c') double tempC,
       @JsonKey(name: 'wind_kph') double windKph,
-      @JsonKey(name: 'wind_dir') double windDir,
+      @JsonKey(name: 'wind_dir') String windDir,
       @JsonKey(name: 'precip_mm') double precipMm,
       @JsonKey(name: 'humidity') double humidity,
       @JsonKey(name: 'cloud') double cloudPerc,
@@ -104,7 +108,7 @@ class _$MeteoConditionDtoCopyWithImpl<$Res>
     return _then(_value.copyWith(
       tempC: tempC == freezed ? _value.tempC : tempC as double,
       windKph: windKph == freezed ? _value.windKph : windKph as double,
-      windDir: windDir == freezed ? _value.windDir : windDir as double,
+      windDir: windDir == freezed ? _value.windDir : windDir as String,
       precipMm: precipMm == freezed ? _value.precipMm : precipMm as double,
       humidity: humidity == freezed ? _value.humidity : humidity as double,
       cloudPerc: cloudPerc == freezed ? _value.cloudPerc : cloudPerc as double,
@@ -135,7 +139,7 @@ abstract class _$MeteoConditionDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'temp_c') double tempC,
       @JsonKey(name: 'wind_kph') double windKph,
-      @JsonKey(name: 'wind_dir') double windDir,
+      @JsonKey(name: 'wind_dir') String windDir,
       @JsonKey(name: 'precip_mm') double precipMm,
       @JsonKey(name: 'humidity') double humidity,
       @JsonKey(name: 'cloud') double cloudPerc,
@@ -172,7 +176,7 @@ class __$MeteoConditionDtoCopyWithImpl<$Res>
     return _then(_MeteoConditionDto(
       tempC: tempC == freezed ? _value.tempC : tempC as double,
       windKph: windKph == freezed ? _value.windKph : windKph as double,
-      windDir: windDir == freezed ? _value.windDir : windDir as double,
+      windDir: windDir == freezed ? _value.windDir : windDir as String,
       precipMm: precipMm == freezed ? _value.precipMm : precipMm as double,
       humidity: humidity == freezed ? _value.humidity : humidity as double,
       cloudPerc: cloudPerc == freezed ? _value.cloudPerc : cloudPerc as double,
@@ -184,6 +188,7 @@ class __$MeteoConditionDtoCopyWithImpl<$Res>
   }
 }
 
+@JsonSerializable()
 class _$_MeteoConditionDto implements _MeteoConditionDto {
   _$_MeteoConditionDto(
       {@JsonKey(name: 'temp_c') this.tempC,
@@ -196,6 +201,9 @@ class _$_MeteoConditionDto implements _MeteoConditionDto {
       @JsonKey(name: 'uv') this.uvIndex,
       @JsonKey(name: 'condition') this.detail});
 
+  factory _$_MeteoConditionDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_MeteoConditionDtoFromJson(json);
+
   @override
   @JsonKey(name: 'temp_c')
   final double tempC;
@@ -204,7 +212,7 @@ class _$_MeteoConditionDto implements _MeteoConditionDto {
   final double windKph;
   @override
   @JsonKey(name: 'wind_dir')
-  final double windDir;
+  final String windDir;
   @override
   @JsonKey(name: 'precip_mm')
   final double precipMm;
@@ -275,13 +283,18 @@ class _$_MeteoConditionDto implements _MeteoConditionDto {
   @override
   _$MeteoConditionDtoCopyWith<_MeteoConditionDto> get copyWith =>
       __$MeteoConditionDtoCopyWithImpl<_MeteoConditionDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_MeteoConditionDtoToJson(this);
+  }
 }
 
 abstract class _MeteoConditionDto implements MeteoConditionDto {
   factory _MeteoConditionDto(
           {@JsonKey(name: 'temp_c') double tempC,
           @JsonKey(name: 'wind_kph') double windKph,
-          @JsonKey(name: 'wind_dir') double windDir,
+          @JsonKey(name: 'wind_dir') String windDir,
           @JsonKey(name: 'precip_mm') double precipMm,
           @JsonKey(name: 'humidity') double humidity,
           @JsonKey(name: 'cloud') double cloudPerc,
@@ -289,6 +302,9 @@ abstract class _MeteoConditionDto implements MeteoConditionDto {
           @JsonKey(name: 'uv') double uvIndex,
           @JsonKey(name: 'condition') MeteoConditionDetailDto detail}) =
       _$_MeteoConditionDto;
+
+  factory _MeteoConditionDto.fromJson(Map<String, dynamic> json) =
+      _$_MeteoConditionDto.fromJson;
 
   @override
   @JsonKey(name: 'temp_c')
@@ -298,7 +314,7 @@ abstract class _MeteoConditionDto implements MeteoConditionDto {
   double get windKph;
   @override
   @JsonKey(name: 'wind_dir')
-  double get windDir;
+  String get windDir;
   @override
   @JsonKey(name: 'precip_mm')
   double get precipMm;

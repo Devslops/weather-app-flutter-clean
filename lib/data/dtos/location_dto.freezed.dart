@@ -8,6 +8,9 @@ part of 'location_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) {
+  return _LocationDto.fromJson(json);
+}
 
 class _$LocationDtoTearOff {
   const _$LocationDtoTearOff();
@@ -17,16 +20,14 @@ class _$LocationDtoTearOff {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'region') String region,
       @JsonKey(name: 'country') String country,
-      @JsonKey(name: 'lat') String lat,
-      @JsonKey(name: 'lon') String lon,
-      @JsonKey(name: 'localtime') DateTime localtime}) {
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon}) {
     return _LocationDto(
       name: name,
       region: region,
       country: country,
       lat: lat,
       lon: lon,
-      localtime: localtime,
     );
   }
 }
@@ -42,12 +43,11 @@ mixin _$LocationDto {
   @JsonKey(name: 'country')
   String get country;
   @JsonKey(name: 'lat')
-  String get lat;
+  double get lat;
   @JsonKey(name: 'lon')
-  String get lon;
-  @JsonKey(name: 'localtime')
-  DateTime get localtime;
+  double get lon;
 
+  Map<String, dynamic> toJson();
   $LocationDtoCopyWith<LocationDto> get copyWith;
 }
 
@@ -59,9 +59,8 @@ abstract class $LocationDtoCopyWith<$Res> {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'region') String region,
       @JsonKey(name: 'country') String country,
-      @JsonKey(name: 'lat') String lat,
-      @JsonKey(name: 'lon') String lon,
-      @JsonKey(name: 'localtime') DateTime localtime});
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon});
 }
 
 class _$LocationDtoCopyWithImpl<$Res> implements $LocationDtoCopyWith<$Res> {
@@ -78,16 +77,13 @@ class _$LocationDtoCopyWithImpl<$Res> implements $LocationDtoCopyWith<$Res> {
     Object country = freezed,
     Object lat = freezed,
     Object lon = freezed,
-    Object localtime = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed ? _value.name : name as String,
       region: region == freezed ? _value.region : region as String,
       country: country == freezed ? _value.country : country as String,
-      lat: lat == freezed ? _value.lat : lat as String,
-      lon: lon == freezed ? _value.lon : lon as String,
-      localtime:
-          localtime == freezed ? _value.localtime : localtime as DateTime,
+      lat: lat == freezed ? _value.lat : lat as double,
+      lon: lon == freezed ? _value.lon : lon as double,
     ));
   }
 }
@@ -102,9 +98,8 @@ abstract class _$LocationDtoCopyWith<$Res>
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'region') String region,
       @JsonKey(name: 'country') String country,
-      @JsonKey(name: 'lat') String lat,
-      @JsonKey(name: 'lon') String lon,
-      @JsonKey(name: 'localtime') DateTime localtime});
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon});
 }
 
 class __$LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
@@ -123,28 +118,28 @@ class __$LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
     Object country = freezed,
     Object lat = freezed,
     Object lon = freezed,
-    Object localtime = freezed,
   }) {
     return _then(_LocationDto(
       name: name == freezed ? _value.name : name as String,
       region: region == freezed ? _value.region : region as String,
       country: country == freezed ? _value.country : country as String,
-      lat: lat == freezed ? _value.lat : lat as String,
-      lon: lon == freezed ? _value.lon : lon as String,
-      localtime:
-          localtime == freezed ? _value.localtime : localtime as DateTime,
+      lat: lat == freezed ? _value.lat : lat as double,
+      lon: lon == freezed ? _value.lon : lon as double,
     ));
   }
 }
 
+@JsonSerializable()
 class _$_LocationDto implements _LocationDto {
   _$_LocationDto(
       {@JsonKey(name: 'name') this.name,
       @JsonKey(name: 'region') this.region,
       @JsonKey(name: 'country') this.country,
       @JsonKey(name: 'lat') this.lat,
-      @JsonKey(name: 'lon') this.lon,
-      @JsonKey(name: 'localtime') this.localtime});
+      @JsonKey(name: 'lon') this.lon});
+
+  factory _$_LocationDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_LocationDtoFromJson(json);
 
   @override
   @JsonKey(name: 'name')
@@ -157,17 +152,14 @@ class _$_LocationDto implements _LocationDto {
   final String country;
   @override
   @JsonKey(name: 'lat')
-  final String lat;
+  final double lat;
   @override
   @JsonKey(name: 'lon')
-  final String lon;
-  @override
-  @JsonKey(name: 'localtime')
-  final DateTime localtime;
+  final double lon;
 
   @override
   String toString() {
-    return 'LocationDto(name: $name, region: $region, country: $country, lat: $lat, lon: $lon, localtime: $localtime)';
+    return 'LocationDto(name: $name, region: $region, country: $country, lat: $lat, lon: $lon)';
   }
 
   @override
@@ -184,10 +176,7 @@ class _$_LocationDto implements _LocationDto {
             (identical(other.lat, lat) ||
                 const DeepCollectionEquality().equals(other.lat, lat)) &&
             (identical(other.lon, lon) ||
-                const DeepCollectionEquality().equals(other.lon, lon)) &&
-            (identical(other.localtime, localtime) ||
-                const DeepCollectionEquality()
-                    .equals(other.localtime, localtime)));
+                const DeepCollectionEquality().equals(other.lon, lon)));
   }
 
   @override
@@ -197,12 +186,16 @@ class _$_LocationDto implements _LocationDto {
       const DeepCollectionEquality().hash(region) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(lat) ^
-      const DeepCollectionEquality().hash(lon) ^
-      const DeepCollectionEquality().hash(localtime);
+      const DeepCollectionEquality().hash(lon);
 
   @override
   _$LocationDtoCopyWith<_LocationDto> get copyWith =>
       __$LocationDtoCopyWithImpl<_LocationDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_LocationDtoToJson(this);
+  }
 }
 
 abstract class _LocationDto implements LocationDto {
@@ -210,9 +203,11 @@ abstract class _LocationDto implements LocationDto {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'region') String region,
       @JsonKey(name: 'country') String country,
-      @JsonKey(name: 'lat') String lat,
-      @JsonKey(name: 'lon') String lon,
-      @JsonKey(name: 'localtime') DateTime localtime}) = _$_LocationDto;
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon}) = _$_LocationDto;
+
+  factory _LocationDto.fromJson(Map<String, dynamic> json) =
+      _$_LocationDto.fromJson;
 
   @override
   @JsonKey(name: 'name')
@@ -225,13 +220,10 @@ abstract class _LocationDto implements LocationDto {
   String get country;
   @override
   @JsonKey(name: 'lat')
-  String get lat;
+  double get lat;
   @override
   @JsonKey(name: 'lon')
-  String get lon;
-  @override
-  @JsonKey(name: 'localtime')
-  DateTime get localtime;
+  double get lon;
   @override
   _$LocationDtoCopyWith<_LocationDto> get copyWith;
 }

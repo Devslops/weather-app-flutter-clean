@@ -8,6 +8,10 @@ part of 'meteo_condition_detail_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+MeteoConditionDetailDto _$MeteoConditionDetailDtoFromJson(
+    Map<String, dynamic> json) {
+  return _MeteoConditionDetailDto.fromJson(json);
+}
 
 class _$MeteoConditionDetailDtoTearOff {
   const _$MeteoConditionDetailDtoTearOff();
@@ -16,7 +20,7 @@ class _$MeteoConditionDetailDtoTearOff {
   _MeteoConditionDetailDto call(
       {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'code') String code}) {
+      @JsonKey(name: 'code') int code}) {
     return _MeteoConditionDetailDto(
       text: text,
       icon: icon,
@@ -34,8 +38,9 @@ mixin _$MeteoConditionDetailDto {
   @JsonKey(name: 'icon')
   String get icon;
   @JsonKey(name: 'code')
-  String get code;
+  int get code;
 
+  Map<String, dynamic> toJson();
   $MeteoConditionDetailDtoCopyWith<MeteoConditionDetailDto> get copyWith;
 }
 
@@ -46,7 +51,7 @@ abstract class $MeteoConditionDetailDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'code') String code});
+      @JsonKey(name: 'code') int code});
 }
 
 class _$MeteoConditionDetailDtoCopyWithImpl<$Res>
@@ -66,7 +71,7 @@ class _$MeteoConditionDetailDtoCopyWithImpl<$Res>
     return _then(_value.copyWith(
       text: text == freezed ? _value.text : text as String,
       icon: icon == freezed ? _value.icon : icon as String,
-      code: code == freezed ? _value.code : code as String,
+      code: code == freezed ? _value.code : code as int,
     ));
   }
 }
@@ -80,7 +85,7 @@ abstract class _$MeteoConditionDetailDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'code') String code});
+      @JsonKey(name: 'code') int code});
 }
 
 class __$MeteoConditionDetailDtoCopyWithImpl<$Res>
@@ -103,16 +108,20 @@ class __$MeteoConditionDetailDtoCopyWithImpl<$Res>
     return _then(_MeteoConditionDetailDto(
       text: text == freezed ? _value.text : text as String,
       icon: icon == freezed ? _value.icon : icon as String,
-      code: code == freezed ? _value.code : code as String,
+      code: code == freezed ? _value.code : code as int,
     ));
   }
 }
 
+@JsonSerializable()
 class _$_MeteoConditionDetailDto implements _MeteoConditionDetailDto {
   _$_MeteoConditionDetailDto(
       {@JsonKey(name: 'text') this.text,
       @JsonKey(name: 'icon') this.icon,
       @JsonKey(name: 'code') this.code});
+
+  factory _$_MeteoConditionDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_MeteoConditionDetailDtoFromJson(json);
 
   @override
   @JsonKey(name: 'text')
@@ -122,7 +131,7 @@ class _$_MeteoConditionDetailDto implements _MeteoConditionDetailDto {
   final String icon;
   @override
   @JsonKey(name: 'code')
-  final String code;
+  final int code;
 
   @override
   String toString() {
@@ -152,13 +161,21 @@ class _$_MeteoConditionDetailDto implements _MeteoConditionDetailDto {
   _$MeteoConditionDetailDtoCopyWith<_MeteoConditionDetailDto> get copyWith =>
       __$MeteoConditionDetailDtoCopyWithImpl<_MeteoConditionDetailDto>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_MeteoConditionDetailDtoToJson(this);
+  }
 }
 
 abstract class _MeteoConditionDetailDto implements MeteoConditionDetailDto {
   factory _MeteoConditionDetailDto(
       {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'code') String code}) = _$_MeteoConditionDetailDto;
+      @JsonKey(name: 'code') int code}) = _$_MeteoConditionDetailDto;
+
+  factory _MeteoConditionDetailDto.fromJson(Map<String, dynamic> json) =
+      _$_MeteoConditionDetailDto.fromJson;
 
   @override
   @JsonKey(name: 'text')
@@ -168,7 +185,7 @@ abstract class _MeteoConditionDetailDto implements MeteoConditionDetailDto {
   String get icon;
   @override
   @JsonKey(name: 'code')
-  String get code;
+  int get code;
   @override
   _$MeteoConditionDetailDtoCopyWith<_MeteoConditionDetailDto> get copyWith;
 }

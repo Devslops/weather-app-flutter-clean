@@ -11,12 +11,15 @@ class MeteoRepositoryImpl extends ApiRepository implements MeteoRepository {
   @override
   Future<MeteoDto> getCurrentMeteo(locationString) async {
     BaseOptions options = client.options;
-    String url = options.baseUrl +
-        'current.json?$locationString&key=${options.queryParameters['key']}&lang=${options.queryParameters['lang']}';
+    String url = options.baseUrl + 'current.json';
 
-    var response = await client.get(
-        "http://api.weatherapi.com/v1/current.json?key=8e2453e8df9b4e248b5102412202109&q=chavanay&lang=fr&days=5");
-    print('http request link : $controller&$locationString');
+    var response = await client.get(url, queryParameters: {
+      "key": options.queryParameters['key'],
+      "lang": options.queryParameters['lang'],
+      "q": locationString
+    });
+    print("HEEEEEEEEEEEEEEEEEEEEEEEEEEEERE");
+    print(MeteoDto.fromJson(response.data));
     return MeteoDto.fromJson(response.data);
   }
 }

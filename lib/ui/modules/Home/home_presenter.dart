@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
+import 'package:weather_app/core/loading_state.dart';
 import 'package:weather_app/domain/entities/meteo.dart';
 import 'package:weather_app/domain/controllers/meteo_controller.Dart';
 
@@ -16,10 +18,25 @@ abstract class _HomePresenterBase with Store {
   @observable
   Meteo meteo;
 
+  @observable
+  LoadingState loadingState = LoadingState.initial();
+
+  Future<void> init() async {
+    if (loadingState is Initial) {
+      try {
+        loadingState = LoadingState.loading();
+        await getCurrentMeteo();
+        loadingState = LoadingState.loaded();
+      } catch (e) {
+        loadingState = LoadingState.error();
+      }
+    }
+  }
+
   Future<void> getCurrentMeteo() async {
     Position position =
         await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    String locationString = 'q=${position.latitude},${position.longitude}';
+    String locationString = '${position.latitude},${position.longitude}';
 
     meteo = await _meteoController.getCurrentMeteo(locationString);
   }
