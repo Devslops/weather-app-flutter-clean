@@ -18,7 +18,6 @@ class MeteoRepositoryImpl extends ApiRepository implements MeteoRepository {
       "lang": options.queryParameters['lang'],
       "q": locationString
     });
-    print("HEEEEEEEEEEEEEEEEEEEEEEEEEEEERE");
     print(MeteoDto.fromJson(response.data));
     return MeteoDto.fromJson(response.data);
   }
